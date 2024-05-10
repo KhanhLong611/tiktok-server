@@ -21,7 +21,8 @@ const app = express();
 // Enable CORS
 app.use(
   cors({
-    credentials: true,
+    origin: "https://klong-tiktok-clone.netlify.app",
+    credentials: true, // Enable credentials (cookies, authorization headers)
   })
 );
 
