@@ -20,7 +20,7 @@ const createSendToken = (user, statusCode, res) => {
     ),
     withCredentials: true,
     httpOnly: true,
-    // secure: true, when the environment is set to production
+    secure: true, // when the environment is set to production
   };
 
   res.cookie("jwt", token, cookieOptions);
@@ -75,6 +75,9 @@ exports.login = catchAsyncError(async (req, res, next) => {
 exports.logout = (req, res) => {
   res.cookie("jwt", "loggedout", {
     expires: new Date(Date.now() + 10 * 1000),
+    withCredentials: true,
+    httpOnly: true,
+    secure: true, // when the environment is set to production
   });
   res.status(200).json({
     status: "success",

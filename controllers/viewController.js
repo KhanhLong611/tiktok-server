@@ -38,7 +38,7 @@ exports.getRandomVideos = catchAsyncError(async (req, res, next) => {
     maxAge: 60 * 60 * 12 * 1000,
     withCredentials: true,
     httpOnly: true,
-    // secure: true, when the environment is set to production
+    secure: true, // when the environment is set to production
   });
 
   const page = req.query.page || 1;
