@@ -6,6 +6,7 @@ const User = require("../models/userModel");
 const catchAsyncError = require("../utils/catchAsyncError");
 const AppError = require("../utils/appError");
 const Email = require("../utils/email");
+const { NONAME } = require("dns");
 
 const signToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -21,6 +22,7 @@ const createSendToken = (user, statusCode, res) => {
     withCredentials: true,
     httpOnly: true,
     secure: true, // when the environment is set to production
+    sameSite: "None", // Allow cross-site usage
   };
 
   res.cookie("jwt", token, cookieOptions);
@@ -78,6 +80,7 @@ exports.logout = (req, res) => {
     withCredentials: true,
     httpOnly: true,
     secure: true, // when the environment is set to production
+    sameSite: "None", // Allow cross-site usage
   });
   res.status(200).json({
     status: "success",

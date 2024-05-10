@@ -6,6 +6,7 @@ const apiFeatures = require("../utils/apiFeatures");
 exports.getRandomVideos = catchAsyncError(async (req, res, next) => {
   let videoIdArray = [];
 
+  // Return a new array of videos IDs
   const getVideoIdArray = async () => {
     const videos = await Video.aggregate([
       {
@@ -39,6 +40,7 @@ exports.getRandomVideos = catchAsyncError(async (req, res, next) => {
     withCredentials: true,
     httpOnly: true,
     secure: true, // when the environment is set to production
+    sameSite: "None", // Allow cross-site usage
   });
 
   const page = req.query.page || 1;
