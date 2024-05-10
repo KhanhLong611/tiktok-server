@@ -6,7 +6,6 @@ const {
   getFollowingVideos,
   getVideoByTags,
 } = require("../controllers/viewController");
-const { searchUserByName } = require("../controllers/userController");
 
 const router = express.Router();
 

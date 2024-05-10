@@ -16,12 +16,14 @@ router.get("/find/:id", userController.getUser);
 
 router.use("/:id/videos", videoRouter);
 
+// Search user by name in the search bar in header
+router.get("/search", userController.searchUserByName);
+
 // Router works like a mini app so it can use middleware
 // Protect all routes after this point
 router.use(authController.protect);
 
 router.get("/me", userController.getMe);
-router.get("/search", userController.searchUserByName);
 router.get("/checkNicknameDuplicate", userController.checkNicknameDuplicate);
 router.get("/following", userController.getFollowingUsers);
 router.patch("/updateMe", userController.updateUser);
